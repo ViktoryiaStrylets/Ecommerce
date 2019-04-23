@@ -1,38 +1,18 @@
 {% extends "blog/base.html" %}
 {% block content %}
+
   <div class="content-section">
       <form method="POST">
           {% csrf_token %}
-       <div class="form-row">
-    <div class="col">
-
-        <label for="inputFN">First Name</label>
-      <input type="text" class="form-control"   id="inputFN" placeholder="First name">
-    </div>
-    <div class="col">
-        <label for="inputLN">Last Name</label>
-      <input type="text" class="form-control"  id= inputLN placeholder="Last name">
-    </div>
-  </div>
-          <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-    </div>
-  </div>
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Register</legend>
+              {{form.as_p}}
+          </fieldset>
           <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary btn-md">Sign in</button>
+              <botton class="btn btn-outline-info" type="submit">
+                  Sign Up
+              </botton>
+          </div>
       </form>
       <div class="border-top pt-3">
           <small class="text-muted">

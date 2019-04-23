@@ -1,4 +1,4 @@
-{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,12 +79,12 @@
 </nav>
 <div class="container">
     {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">
+       {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
         {{message}}
-    </div>
-    {% endfor %}
-    {% endif %}
+         </div>
+        {% endfor %}
+     {% endif %}
     {% block content %}{% endblock %}
 </div>
 
