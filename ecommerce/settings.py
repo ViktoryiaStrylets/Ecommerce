@@ -84,9 +84,9 @@ DATABASES = {
         'HOST': '35.196.4.206',
         'PORT': '3306',
         'OPTIONS':  {
-            'ssl': {'ca': 'ecommerce/SSL_Keys/client-cert.pem',
-            'cert': 'ecommerce/SSL_Keys/client-key.pem',
-            'key': 'ecommerce/SSL_Keys/server-ca.pem'
+            'ssl': {'ca': 'ecommerce/SSL_Keys/server-ca.pem',
+            'cert': 'ecommerce/SSL_Keys/client-cert.pem',
+            'key': 'ecommerce/SSL_Keys/client-key.pem'
             }
         }
     }
