@@ -12,3 +12,6 @@ def about(request):
 
 def services(request):
     return render(request, 'blog/services.html')
+
+def customerService(request):
+    return render(request, 'blog/customer_service.html')
