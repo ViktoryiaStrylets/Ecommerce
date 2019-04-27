@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "blog/base.html" %}
+{% block content %}
+  <div class="container"></div>
 
-</body>
-</html>
+ <h2>Sign In </h2>
+
+ <form method="POST"> {%csrf_token%}
+   {{form.as_p}}
+     <button class="btn btn-info btn-md" type="submit">LogIn</button>
+ </form>
+{% endblock content %}
