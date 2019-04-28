@@ -27,10 +27,6 @@ urlpatterns = [
     path('login_page/', user_views.login_page, name='login_page'),
     path('', include('blog.url')),
     path('shop/', include('shop.urls')),
-    path('clothing/', shop_views.clothing_category, name='clothing_category'),
-    path('beauty/', shop_views.beauty_category, name='beauty_category'),
-    path('jewelry/', shop_views.jewelry_category, name='jewelry_category'),
-    path('shoes/', shop_views.shoes_category, name='shoes_category'),
 ]
 
 if settings.DEBUG:
