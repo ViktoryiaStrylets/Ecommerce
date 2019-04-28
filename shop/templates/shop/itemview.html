@@ -200,18 +200,21 @@
 <div class="container bootstrap snipets">
    <div class="text-center text-muted" style = "margin-top:60px";></div>
    <div class="row flow-offset-1">
+       {% if items|length > 0 %}
        {% for item in items %}
-
-       <div class="col-xs-6 col-md-4">
-       <div class="product tumbnail thumbnail-3"><a href="#"><img src="../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt="NOT FOUND"></a>
-         <div class="caption">
-             <h6><b>{{item.ProductName}}</b> <br><b>{{item.BrandName}}</br></b></h6><span class="price">
-             <del>${{item.Price}}</del></span><span class="price sale">$ 2.99 </span>
-         </div>
-       </div>
+           <div class="col-xs-6 col-md-4">
+           <div class="product tumbnail thumbnail-3"><a href="#"><img src="../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt="NOT FOUND"></a>
+             <div class="caption">
+                 <h6><b>{{item.ProductName}}</b> <br><b>{{item.BrandName}}</br></b></h6><span class="price">
+                 <del>${{item.Price}}</del></span><span class="price sale">$ 2.99 </span>
+             </div>
+           </div>
      </div>
-
        {% endfor %}
+
+       {% else %}
+           <h1>Your search didn't match any results.</h1>
+       {% endif %}
    </div>
 </div>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
