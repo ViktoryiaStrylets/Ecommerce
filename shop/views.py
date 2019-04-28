@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.db.models import Q
 
 from .models import Item
+from .forms import SearchForm
 
 
 def shop_all(request):
@@ -27,3 +29,21 @@ def jewelry_category(request):
 def shoes_category(request):
     items = Item.objects.filter(CategoryId=4)
     return render(request, 'shop/categoryview.html', {'items': items})
+
+def search(request):
+    if request.POST:
+        form = SearchForm(request.POST)
+
+        if form.is_valid():
+            search_terms = form.cleaned_data['search_phrase']
+            split_search_terms = search_terms.lower().split()
+
+            items = set([])
+
+            for search_term in split_search_terms:
+                items = items.union(set(Item.objects.filter(Q(SearchTerm__icontains=search_term) | Q(ProductName__icontains=search_term))))
+
+            return render(request, 'shop/itemview.html', {'items': items})
+        else:
+            print('hello')
+            return render(request, 'shop/itemview.html')

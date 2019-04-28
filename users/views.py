@@ -39,6 +39,6 @@ def login_page(request):
                 return redirect('blog-home')
             else:
                 messages.error(request, " Invalid Password or UserName")
-                return redirect('/login_page')
+                return redirect('/users/login_page')
 
     return render(request, 'users/login.html', context)
