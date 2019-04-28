@@ -36,7 +36,7 @@ def search(request):
 
         if form.is_valid():
             search_terms = form.cleaned_data['search_phrase']
-            split_search_terms = search_terms.lower().split()
+            split_search_terms = search_terms.split()
 
             items = set([])
 
@@ -45,5 +45,4 @@ def search(request):
 
             return render(request, 'shop/itemview.html', {'items': items})
         else:
-            print('hello')
             return render(request, 'shop/itemview.html')
