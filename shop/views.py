@@ -43,6 +43,10 @@ def search(request):
             for search_term in split_search_terms:
                 items = items.union(set(Item.objects.filter(Q(SearchTerm__icontains=search_term) | Q(ProductName__icontains=search_term))))
 
-            return render(request, 'shop/itemview.html', {'items': items})
+            return render(request, 'shop/categoryview.html', {'items': items})
         else:
-            return render(request, 'shop/itemview.html')
+            return render(request, 'shop/categoryview.html')
+
+def view_product(request, id, name):
+    item = Item.objects.filter(ItemID=id)
+    return render(request, 'shop/productview.html')

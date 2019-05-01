@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -18,3 +19,9 @@ class Item(models.Model):
 
     def __str__(self):
         return 'Item'
+
+    def slug_name(self):
+        return slugify(self.ProductName)
+
+class Reviews(models.Model):
+    ReviewID = models.IntegerField(primary_key=True)
