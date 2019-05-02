@@ -23,7 +23,6 @@ class Item(models.Model):
 
     def __str__(self):
         return 'Item'
-<<<<<<< HEAD
 
     def slug_name(self):
         return slugify(self.ProductName)
@@ -42,5 +41,3 @@ class Reviews(models.Model):
             return Reviews.objects.filter(ItemID=id).aggregate(Avg('Ratings'))
         except:
             return 0
-=======
->>>>>>> daa5667323200c78f33750f4ac08192762b38cfc

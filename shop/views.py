@@ -46,7 +46,6 @@ def search(request):
 
             return render(request, 'shop/itemview.html', {'items': items})
         else:
-<<<<<<< HEAD
             return render(request, 'shop/categoryview.html')
 
 def view_product(request, id, name):
@@ -55,6 +54,3 @@ def view_product(request, id, name):
     ratings = Reviews.getAvg(reviews, id)
     print(ratings)
     return render(request, 'shop/productview.html')
-=======
-            return render(request, 'shop/itemview.html')
->>>>>>> daa5667323200c78f33750f4ac08192762b38cfc
