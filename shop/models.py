@@ -1,9 +1,6 @@
 from django.db import models
-<<<<<<< HEAD
 from django.db.models import Avg
 from django.utils.text import slugify
-=======
->>>>>>> daa5667323200c78f33750f4ac08192762b38cfc
 
 
 # Create your models here.
