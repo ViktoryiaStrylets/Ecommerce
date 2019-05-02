@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 
 from .models import Item
+from .models import Reviews
 from .forms import SearchForm
 
 
@@ -45,4 +46,11 @@ def search(request):
 
             return render(request, 'shop/itemview.html', {'items': items})
         else:
-            return render(request, 'shop/itemview.html')
+            return render(request, 'shop/categoryview.html')
+
+def view_product(request, id, name):
+    item = Item.objects.filter(ItemID=id)
+    reviews = Reviews.objects.filter(ItemID=id)
+    ratings = Reviews.getAvg(reviews, id)
+    print(ratings)
+    return render(request, 'shop/productview.html')
