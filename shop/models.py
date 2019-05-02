@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 from django.utils.text import slugify
 
 
@@ -25,3 +26,15 @@ class Item(models.Model):
 
 class Reviews(models.Model):
     ReviewID = models.IntegerField(primary_key=True)
+    CustomerID = models.IntegerField()
+    ItemID = models.IntegerField()
+    SellerID = models.IntegerField()
+    Ratings = models.IntegerField()
+    Review = models.CharField(max_length=255)
+    Date = models.DateField(auto_now=True)
+
+    def getAvg(self, id):
+        try: 
+            return Reviews.objects.filter(ItemID=id).aggregate(Avg('Ratings'))
+        except:
+            return 0
