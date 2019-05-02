@@ -20,13 +20,12 @@
 </head>
 <body>
 
-<div class="jumbotron" style="margin-bottom: 0px " style="background-color: #d5f5e3;">
+<div class="jumbotron" style="margin-bottom: 0px;" style="background-color: #d5f5e3;">
     <h1>ShopWorld</h1>
     <p>Shopping has never been this fun</p>
       <p class="lead">
     <a class="btn btn-info btn-md" href="/shop" role="button" >Shop Now</a>
   </p>
-
 </div>
 <nav class="navbar navbar-expand-lg navbar-light sticky-top" >
 
@@ -53,34 +52,29 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/shop/jewelry">Women</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/shop/clothing">Men</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="/shop/shoes">Kids</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/shop/beauty">Beauty</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/users/login_page">Sign In</a>
             </li>
-
-
         </ul>
-
-
-
-
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline" action="/shop/search/" method="post">
+            {%csrf_token%}
+            <input class="form-control mr-sm-2" type="text" name="search_phrase" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-
-           <div class="nav-item">
-              <img src="../../static/blog/shopping_cart.jpg " style=" width:40px; height:40 px; position: relative; background-color: transparent"></a>
-           </div>
-
     </div>
 </nav>
 <div class="container">
