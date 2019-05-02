@@ -193,6 +193,9 @@
 .quantity [class*='fa-']:hover {
   color: #455a64;
 }
+
+
+
     </style>
 
 
@@ -202,12 +205,15 @@
    <div class="row flow-offset-1">
        {% for item in items %}
 
-       <div class="col-xs-6 col-md-4">
+       <div class="col-xs-6 col-md-4" style = "margin-top:60px">
        <div class="product tumbnail thumbnail-3"><a href="#"><img src="../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt=""></a>
          <div class="caption">
              <h6><b>{{item.ProductName}}</b> <br><b>{{item.BrandName}}</br></b></h6><span class="price">
              <del>${{item.Price}}</del></span><span class="price sale">$ 2.99 </span>
          </div>
+           <div class="ecom bg-lblue" >
+               <a class="btn btn-info btn-md" href="#">Add to cart</a>
+           </div>
        </div>
      </div>
 
