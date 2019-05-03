@@ -49,8 +49,8 @@ def search(request):
             return render(request, 'shop/categoryview.html')
 
 def view_product(request, id, name):
-    item = Item.objects.filter(ItemID=id)
-    reviews = Reviews.objects.filter(ItemID=id)
-    ratings = Reviews.getAvg(reviews, id)
-    print(ratings)
-    return render(request, 'shop/productview.html')
+    items = Item.objects.filter(ItemID=id)
+    # reviews = Reviews.objects.filter(ItemID=id)
+    # ratings = Reviews.getAvg(reviews, id)
+    # print(ratings)
+    return render(request, 'shop/productview.html', {'items': items})
