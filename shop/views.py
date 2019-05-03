@@ -32,6 +32,7 @@ def shoes_category(request):
     items = Item.objects.filter(CategoryId=4)
     return render(request, 'shop/categoryview.html', {'items': items})
 
+
 def categorySortLowToHigh(request, categoryname):
     try:
         categories = Category.objects.filter(Name=categoryname)[0]
@@ -58,6 +59,7 @@ def allSortHighToLow(request):
     items = Item.objects.order_by('-Price')
     return render(request, 'shop/itemview.html', {'items': items})
 
+
 def search(request):
     if request.POST:
         form = SearchForm(request.POST)
@@ -75,9 +77,10 @@ def search(request):
         else:
             return render(request, 'shop/categoryview.html')
 
+
 def view_product(request, id, name):
     items = Item.objects.filter(ItemID=id)
-    # reviews = Reviews.objects.filter(ItemID=id)
-    # ratings = Reviews.getAvg(reviews, id)
-    # print(ratings)
+    reviews = Reviews.objects.filter(ItemID=id)
+    ratings = Reviews.getAvg(reviews, id)
+    print(ratings)
     return render(request, 'shop/productview.html', {'items': items})

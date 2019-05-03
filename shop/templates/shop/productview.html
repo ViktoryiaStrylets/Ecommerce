@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
 
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -201,7 +202,8 @@ html, body {
       {% for item in items %}
   <!-- Left Column / Headphones Image -->
   <div class="left-column">
-    <img src="../static/shop/{{item.ProductImage_path}}" alt="">
+    <img src="../../../../static/shop/{{item.ProductImage_path}}" alt="">
+
 <!--    <img data-image="blue" src="../static/shop/{{item.ProductImage_path}}" alt="">-->
 <!--    <img data-image="red" src="../static/shop/{{item.ProductImage_path}}" alt="">-->
   </div>
