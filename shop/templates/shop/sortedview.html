@@ -1,4 +1,4 @@
-{% extends "blog/base.html" %}
+{% extends "shop/categoryview.html" %}
 {% block content %}
 
 
@@ -6,9 +6,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <style type="text/css">
-
-
-
 
 /*
 * @subsection Shop
@@ -194,42 +191,34 @@
   color: #455a64;
 }
     </style>
+
 <div class="navbar-nav mr-auto mt-2 mt-lg-0">
   <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
                     Filter Items
                     <span class="caret"></span>
                 </a>
   <div class="dropdown-menu" aria-labelledby="dropdown_target">
-    <a class="dropdown-item" href="low-to-high/">Price: Low to High</a>
+    <a class="dropdown-item" href="../low-to-high/">Price: Low to High</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="high-to-low/">Price: High to Low</a>
+    <a class="dropdown-item" href="../high-to-low/">Price: High to Low</a>
   </div>
 </div>
 
-<div class="container bootstrap snipets">
-   <div class="text-center text-muted" style = "margin-top:60px";></div>
+<div class="container bootstrap snipets" style = "margin-top:60px";>
    <div class="row flow-offset-1">
-       {% if items|length > 0 %}
        {% for item in items %}
-           <div class="col-xs-6 col-md-4">
-           <div class="product tumbnail thumbnail-3"><a href="{{item.ItemID}}/{{item.slug_name}}"><img src="../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt="NOT FOUND"></a>
-             <div class="caption">
-                 <h6><b>{{item.ProductName}}</b> <br><b>{{item.BrandName}}</br></b></h6><span class="price">
-                 <del>${{item.Price}}</del></span><span class="price sale">$ 2.99 </span>
-             </div>
-           </div>
+
+       <div class="col-xs-6 col-md-4">
+       <div class="product tumbnail thumbnail-3"><a href="../../{{item.ItemID}}/{{item.slug_name}}"><img src="../../../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt=""></a>
+         <div class="caption">
+             <h6><b>{{item.ProductName}}</b> <br><b>{{item.BrandName}}</br></b></h6><span class="price">
+             <del>${{item.Price}}</del></span><span class="price sale">$ 2.99 </span>
+         </div>
+<!--            <div class="ecom bg-lblue" >-->
+<!--               <a class="btn btn-info btn-md" href="#">Add to cart</a>-->
+<!--           </div>-->
+       </div>
      </div>
+
        {% endfor %}
-
-       {% else %}
-           <h1>Your search didn't match any results.</h1>
-       {% endif %}
-   </div>
-</div>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-
-</script>
-
 {% endblock content %}

@@ -38,3 +38,11 @@ class Reviews(models.Model):
             return Reviews.objects.filter(ItemID=id).aggregate(Avg('Ratings'))
         except:
             return 0
+
+class Category(models.Model):
+    ID = models.IntegerField(primary_key=True)
+    Name = models.CharField(max_length=255)
+    parent_id = models.CharField(max_length=225)
+
+    def __str__(self):
+        return 'Category'
