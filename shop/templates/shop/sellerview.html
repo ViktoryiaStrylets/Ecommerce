@@ -1,0 +1,10 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+{% for seller in sellers %}
+
+<h1>{{seller.FirstName}} {{seller.LastName}}</h1>
+
+{% endfor %}
+
+{% endblock %}
