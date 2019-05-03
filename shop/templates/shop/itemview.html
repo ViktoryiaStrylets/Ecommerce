@@ -200,9 +200,9 @@
                     <span class="caret"></span>
                 </a>
   <div class="dropdown-menu" aria-labelledby="dropdown_target">
-    <a class="dropdown-item" href="low-to-high/">Price: Low to High</a>
+    <a class="dropdown-item" href="../low-to-high/">Price: Low to High</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="high-to-low/">Price: High to Low</a>
+    <a class="dropdown-item" href="../high-to-low/">Price: High to Low</a>
   </div>
 </div>
 
@@ -212,7 +212,7 @@
        {% if items|length > 0 %}
        {% for item in items %}
            <div class="col-xs-6 col-md-4">
-           <div class="product tumbnail thumbnail-3"><a href="{{item.ItemID}}/{{item.slug_name}}"><img src="../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt="NOT FOUND"></a>
+           <div class="product tumbnail thumbnail-3"><a href="{{item.ItemID}}/{{item.slug_name}}"><img src="../../../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt="NOT FOUND"></a>
              <div class="caption">
                  <h6><b>{{item.ProductName}}</b> <br><b>{{item.BrandName}}</br></b></h6><span class="price">
                  <del>${{item.Price}}</del></span><span class="price sale">$ 2.99 </span>

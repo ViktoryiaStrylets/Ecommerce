@@ -38,7 +38,7 @@ def categorySortLowToHigh(request, categoryname):
         items = Item.objects.filter(CategoryId=categories.ID).order_by('Price')
     except:
         items = Item.objects.none()
-    return render(request, 'shop/sortedview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 def categorySortHighToLow(request, categoryname):
     try:
@@ -47,16 +47,16 @@ def categorySortHighToLow(request, categoryname):
     except:
         items = Item.objects.none()
     items = Item.objects.filter(CategoryId=categories.ID).order_by('-Price')
-    return render(request, 'shop/sortedview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 def allSortLowToHigh(request):
 
     items = Item.objects.order_by('Price')
-    return render(request, 'shop/sortedview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 def allSortHighToLow(request):
     items = Item.objects.order_by('-Price')
-    return render(request, 'shop/sortedview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 def search(request):
     if request.POST:
