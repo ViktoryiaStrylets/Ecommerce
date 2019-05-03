@@ -9,4 +9,8 @@ urlpatterns = [
     path('shoes/', views.shoes_category, name='shoes_category'),
     path('search/', views.search, name='shop-search'),
     path('<int:id>/<slug:name>/', views.view_product, name='product-view'),
+    path('<slug:categoryname>/low-to-high/', views.categorySortLowToHigh, name='categorySortLowToHigh'),
+    path('<slug:categoryname>/high-to-low/', views.categorySortHighToLow, name='categorySortHighToLow'),
+    path('low-to-high/', views.allSortLowToHigh, name='allSortLowToHigh'),
+    path('high-to-low/', views.allSortHighToLow, name='allSortHighToLow'),
 ]

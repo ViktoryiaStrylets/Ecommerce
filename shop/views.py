@@ -4,6 +4,7 @@ from django.db.models import Q
 
 from .models import Item
 from .models import Reviews
+from .models import Category
 from .forms import SearchForm
 
 
@@ -30,6 +31,32 @@ def jewelry_category(request):
 def shoes_category(request):
     items = Item.objects.filter(CategoryId=4)
     return render(request, 'shop/categoryview.html', {'items': items})
+
+def categorySortLowToHigh(request, categoryname):
+    try:
+        categories = Category.objects.filter(Name=categoryname)[0]
+        items = Item.objects.filter(CategoryId=categories.ID).order_by('Price')
+    except:
+        items = Item.objects.none()
+    return render(request, 'shop/itemview.html', {'items': items})
+
+def categorySortHighToLow(request, categoryname):
+    try:
+        categories = Category.objects.filter(Name=categoryname)[0]
+        items = Item.objects.filter(CategoryId=categories.ID).order_by('Price')
+    except:
+        items = Item.objects.none()
+    items = Item.objects.filter(CategoryId=categories.ID).order_by('-Price')
+    return render(request, 'shop/itemview.html', {'items': items})
+
+def allSortLowToHigh(request):
+
+    items = Item.objects.order_by('Price')
+    return render(request, 'shop/itemview.html', {'items': items})
+
+def allSortHighToLow(request):
+    items = Item.objects.order_by('-Price')
+    return render(request, 'shop/itemview.html', {'items': items})
 
 def search(request):
     if request.POST:
