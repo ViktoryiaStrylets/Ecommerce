@@ -5,8 +5,16 @@ from django.db.models import Q
 from .models import Item
 from .models import Reviews
 from .models import Category
+from .models import Supplier
 from .forms import SearchForm
 
+def sellers(request):
+    sellers = Supplier.objects.all()
+    return render(request, 'shop/sellerview.html', {'sellers': sellers})
+
+def seller(request, id, name):
+    items = Item.objects.filter(SellerID=id)
+    return render(request, 'shop/sellerinventoryview.html', {'items': items, 'seller': name})
 
 def shop_all(request):
     items = Item.objects.all()

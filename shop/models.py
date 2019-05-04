@@ -46,3 +46,14 @@ class Category(models.Model):
 
     def __str__(self):
         return 'Category'
+
+class Supplier(models.Model):
+    SellerID = models.IntegerField(primary_key=True)
+    FirstName = models.CharField(max_length=255)
+    LastName = models.CharField(max_length=255)
+    Email = models.CharField(max_length=255)
+    CompanyName = models.CharField(max_length=255)
+    AddressID = models.IntegerField()
+
+    def __str__(self):
+        return 'Supplier'
