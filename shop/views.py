@@ -18,55 +18,57 @@ def seller(request, id, name):
 
 def shop_all(request):
     items = Item.objects.all()
+    request.session['category']=0
     return render(request, 'shop/itemview.html', {'items': items})
 
 
 def beauty_category(request):
     items = Item.objects.filter(CategoryId=1)
+    request.session['category']=1
     return render(request, 'shop/categoryview.html', {'items': items})
 
 
 def clothing_category(request):
     items = Item.objects.filter(CategoryId=2)
+    request.session['category']=2
     return render(request, 'shop/categoryview.html', {'items': items})
 
 
 def jewelry_category(request):
     items = Item.objects.filter(CategoryId=3)
+    request.session['category']=3
     return render(request, 'shop/categoryview.html', {'items': items})
 
 
 def shoes_category(request):
     items = Item.objects.filter(CategoryId=4)
+    request.session['category']=4
     return render(request, 'shop/categoryview.html', {'items': items})
 
 
-def categorySortLowToHigh(request, categoryname):
-    try:
-        categories = Category.objects.filter(Name=categoryname)[0]
-        items = Item.objects.filter(CategoryId=categories.ID).order_by('Price')
-    except:
-        items = Item.objects.none()
-    return render(request, 'shop/itemview.html', {'items': items})
+def sort(request):
+    if request.POST:
+        sort_term = request.POST['sort_options']
+        print(sort_term)
 
-def categorySortHighToLow(request, categoryname):
-    try:
-        categories = Category.objects.filter(Name=categoryname)[0]
-        items = Item.objects.filter(CategoryId=categories.ID).order_by('Price')
-    except:
-        items = Item.objects.none()
-    items = Item.objects.filter(CategoryId=categories.ID).order_by('-Price')
-    return render(request, 'shop/itemview.html', {'items': items})
+        category = request.session['category']
+        print(category)
 
-def allSortLowToHigh(request):
+        if sort_term == "low":
+            if category==0:
+                items = Item.objects.order_by('Price')
+                return render(request, 'shop/itemview.html', {'items': items})
+            else:
+                items = Item.objects.filter(CategoryId=category).order_by('Price')
+                return render(request, 'shop/itemview.html', {'items': items})
 
-    items = Item.objects.order_by('Price')
-    return render(request, 'shop/itemview.html', {'items': items})
-
-def allSortHighToLow(request):
-    items = Item.objects.order_by('-Price')
-    return render(request, 'shop/itemview.html', {'items': items})
-
+        if sort_term == "high":
+            if category==0:
+                items = Item.objects.order_by('-Price')
+                return render(request, 'shop/itemview.html', {'items': items})
+            else:
+                items = Item.objects.filter(CategoryId=category).order_by('-Price')
+                return render(request, 'shop/itemview.html', {'items': items})
 
 def search(request):
     if request.POST:
