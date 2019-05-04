@@ -1,10 +1,18 @@
 {% extends "blog/base.html" %}
 {% block content %}
 
-{% for seller in sellers %}
+<table style="width:100%">
+    <tr>
+        <th>Company Name</th>
+        <th>Email</th>
+     </tr>
 
-<h1>{{seller.CompanyName}}</h1>
-
-{% endfor %}
+    {% for seller in sellers %}
+        <tr>
+            <td>{{seller.CompanyName}}</td>
+            <td>{{seller.Email}}</td>
+        </tr>
+    {% endfor %}
+</table>
 
 {% endblock %}
