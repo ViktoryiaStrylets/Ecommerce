@@ -52,6 +52,7 @@ class Supplier(models.Model):
     FirstName = models.CharField(max_length=255)
     LastName = models.CharField(max_length=255)
     Email = models.CharField(max_length=255)
+    CompanyName = models.CharField(max_length=255)
     AddressID = models.IntegerField()
 
     def __str__(self):
