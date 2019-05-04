@@ -9,7 +9,7 @@
 
     {% for seller in sellers %}
         <tr>
-            <td>{{seller.CompanyName}}</td>
+            <td><a href="/shop/sellers/{{seller.SellerID}}_{{seller.CompanyName}}">{{seller.CompanyName}}</a></td>
             <td>{{seller.Email}}</td>
         </tr>
     {% endfor %}

@@ -12,6 +12,10 @@ def sellers(request):
     sellers = Supplier.objects.all()
     return render(request, 'shop/sellerview.html', {'sellers': sellers})
 
+def seller(request, id, name):
+    items = Item.objects.filter(SellerID=id)
+    return render(request, 'shop/sellerinventoryview.html', {'items': items, 'seller': name})
+
 def shop_all(request):
     items = Item.objects.all()
     return render(request, 'shop/itemview.html', {'items': items})
