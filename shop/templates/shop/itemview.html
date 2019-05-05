@@ -193,6 +193,19 @@
 .quantity [class*='fa-']:hover {
   color: #455a64;
 }
+
+.zoom {
+  padding: 0;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+<!--  width: 10px;-->
+<!--  height: 10px;-->
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
     </style>
 
 <div class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -213,7 +226,7 @@
    <div class="row flow-offset-1">
        {% if items|length > 0 %}
        {% for item in items %}
-           <div class="col-xs-6 col-md-4">
+           <div class=" zoom col-xs-6 col-md-4">
            <div class="product tumbnail thumbnail-3"><a href="/shop/{{item.ItemID}}/{{item.slug_name}}"><img src="../../../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt="NOT FOUND"></a>
              <div class="caption">
                  <h6><b>{{item.ProductName}}</b> <br><b>{{item.BrandName}}</br></b></h6><span class="price">
