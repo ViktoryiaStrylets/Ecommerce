@@ -18,7 +18,7 @@ h3 {
   padding-top: 30px;
   height: 80px;
   width: 80px;
-  background-color: #f8f8f9;
+
 }
 .product-imitation.xl {
   padding: 120px 0;
@@ -33,6 +33,8 @@ h3 {
 .ecommerce .fa-star {
   color: #d1dade;
 }
+
+
 .ecommerce .fa-star.active {
   color: #f8ac59;
 }
@@ -110,20 +112,20 @@ table.shoping-cart-table tr td:last-child {
         <div class="col-md-9">
             <div class="ibox">
                 <div class="ibox-title">
-                    <span class="pull-right">(<strong>5</strong>) items</span>
+                    <span class="pull-right">(<strong>{{cart.quantity}}</strong>) items</span>
                     <h5>Items in your cart</h5>
                 </div>
 
 
-               {% if items|length > 0 %}
-                {% for item in items %}
+               {% if cart.item.exists %}
+                {% for item in cart.item.all %}
                 <div class="ibox-content">
                     <div class="table-responsive">
                         <table class="table shoping-cart-table">
 
                             <tbody>
                             <tr>
-                                <td width="90">
+                                <td width="160">
                                     <div class="cart-product-imitation">
                                         <img src="../../../static/shop/{{item.ProductImage_path}}" style="width:140px;height:142px"; alt="NOT FOUND">
                                     </div>
@@ -143,8 +145,14 @@ table.shoping-cart-table tr td:last-child {
                                     </dl>
                                     <div class="m-t-sm">
                                         <a href="#" class="text-muted"><i class="fa fa-gift"></i> Add gift package</a>
-                                        |
-                                        <a href="#" class="text-muted"><i class="fa fa-trash"></i> Remove item</a>
+
+                                        <form method="POST" action="/shoppingcart/delete/" class="form">
+                                       {%csrf_token%}
+                                       <input type="hidden" name="product_id" value={{item.ItemID}}>
+                                         <i>
+                                       <button type="submit" class="fa fa-trash" class="text-muted" style="border:none; padding :0; background: none; color : #737373; ">Remove item </button>   </i>
+                                       </form>
+
                                     </div>
                                 </td>
                                 <td>
@@ -166,14 +174,15 @@ table.shoping-cart-table tr td:last-child {
                 {% endfor %}
 
                 {% else %}
-                <h1>The cart is empty</h1>
+                <h1> Cart is empty </h1>
                 {% endif %}
 
 
                 <div class="ibox-content">
                     <button class="btn btn-primary pull-right"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
+                     <form method="GET" action="/shop/" class="form">
                     <button class="btn btn-white"><i class="fa fa-arrow-left"></i> Continue shopping</button>
-
+                     </form>
                 </div>
             </div>
 
@@ -188,7 +197,7 @@ table.shoping-cart-table tr td:last-child {
                         Total
                     </span>
                     <h2 class="font-bold">
-                        $390,00
+                        {{cart.total}}
                     </h2>
 
                     <hr>
@@ -209,9 +218,9 @@ table.shoping-cart-table tr td:last-child {
                     <h5>Support</h5>
                 </div>
                 <div class="ibox-content text-center">
-                    <h3><i class="fa fa-phone"></i> +43 100 783 001</h3>
+                    <h3><i class="fa fa-phone"></i> ShopWorld@gmail.com</h3>
                     <span class="small">
-                        Please contact with us if you have any questions. We are avalible 24h.
+                        Please contact with us if you have any questions. We are available 24h.
                     </span>
                 </div>
             </div>
