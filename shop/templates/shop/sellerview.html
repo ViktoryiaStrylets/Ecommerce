@@ -1,18 +1,38 @@
 {% extends "blog/base.html" %}
 {% block content %}
 
-<table style="width:100%">
+<table class="table table-striped">
+  <thead>
     <tr>
-        <th>Company Name</th>
-        <th>Email</th>
-     </tr>
+      <th scope="col">#</th>
+      <th scope="col">Company Name</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
 
+    <tbody>
     {% for seller in sellers %}
-        <tr>
-            <td><a href="/shop/sellers/{{seller.SellerID}}_{{seller.CompanyName}}">{{seller.CompanyName}}</a></td>
-            <td>{{seller.Email}}</td>
-        </tr>
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="/shop/sellers/{{seller.SellerID}}_{{seller.CompanyName}}">{{seller.CompanyName}}</a></td>
+      <td>{{seller.Email}}</td>
+    </tr>
+    </tbody>
+
     {% endfor %}
+
+<!--<table style="width:100%">-->
+<!--    <tr>-->
+<!--        <th>Company Name</th>-->
+<!--        <th>Email</th>-->
+<!--     </tr>-->
+
+<!--    {% for seller in sellers %}-->
+<!--        <tr>-->
+<!--            <td><a href="/shop/sellers/{{seller.SellerID}}_{{seller.CompanyName}}">{{seller.CompanyName}}</a></td>-->
+<!--            <td>{{seller.Email}}</td>-->
+<!--        </tr>-->
+<!--    {% endfor %}-->
 </table>
 
 {% endblock %}
