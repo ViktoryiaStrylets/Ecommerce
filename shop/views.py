@@ -7,6 +7,7 @@ from .models import Reviews
 from .models import Category
 from .models import Supplier
 from .forms import SearchForm
+from shoppingcart.models import ShoppingCart
 
 def sellers(request):
     sellers = Supplier.objects.all()
@@ -92,3 +93,5 @@ def view_product(request, id, name):
     ratings = Reviews.getAvg(reviews, id)
     print(ratings)
     return render(request, 'shop/productview.html', {'items': items})
+
+

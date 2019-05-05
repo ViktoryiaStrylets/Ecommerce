@@ -249,7 +249,12 @@ html, body {
     <!-- Product Pricing -->
     <div class="product-price">
       <span>${{item.Price}}</span>
-      <a href="/shoppingcart" class="cart-btn">Add to cart</a>
+      <form method="POST" action="/shoppingcart/update/" class="form">
+        {%csrf_token%}
+        <input type="hidden" name="product_id" value={{item.ItemID}}>
+        <button type="submit" class="cart-btn">Add to cart</button>
+      </form>
+
     </div>
   </div>
   {% endfor %}
