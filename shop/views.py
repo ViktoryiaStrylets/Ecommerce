@@ -31,28 +31,28 @@ def beauty_category(request):
     items = Item.objects.filter(CategoryId=1)
     serialized_data = [item.ItemID for item in items]
     request.session['item_data'] = serialized_data
-    return render(request, 'shop/categoryview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 
 def clothing_category(request):
     items = Item.objects.filter(CategoryId=2)
     serialized_data = [item.ItemID for item in items]
     request.session['item_data'] = serialized_data
-    return render(request, 'shop/categoryview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 
 def jewelry_category(request):
     items = Item.objects.filter(CategoryId=3)
     serialized_data = [item.ItemID for item in items]
     request.session['item_data'] = serialized_data
-    return render(request, 'shop/categoryview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 
 def shoes_category(request):
     items = Item.objects.filter(CategoryId=4)
     serialized_data = [item.ItemID for item in items]
     request.session['item_data'] = serialized_data
-    return render(request, 'shop/categoryview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 
 def sort(request):
@@ -92,7 +92,7 @@ def search(request):
             request.session['item_data'] = serialized_data
             return render(request, 'shop/itemview.html', {'items': items})
         else:
-            return render(request, 'shop/categoryview.html')
+            return render(request, 'shop/itemview.html')
 
 
 def view_product(request, id, name):
