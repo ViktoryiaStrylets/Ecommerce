@@ -58,23 +58,19 @@ def shoes_category(request):
 def sort(request):
     if request.POST:
         sort_term = request.POST['sort_options']
-        print(sort_term)
 
         category = request.session['item_data']
-        print(len(category))
 
         items = set([])
 
         if sort_term == "low":
             for item_id in category:
-                print(item_id)
                 items = items.union(set(Item.objects.filter(Q(ItemID = item_id))))
             ordered = sorted(items, key=operator.attrgetter('Price'))
             return render(request, 'shop/itemview.html', {'items': ordered})
 
         if sort_term == "high":
             for item_id in category:
-                print(item_id)
                 items = items.union(set(Item.objects.filter(Q(ItemID = item_id))))
             ordered = sorted(items, reverse=True, key=operator.attrgetter('Price'))
             return render(request, 'shop/itemview.html', {'items': ordered})
@@ -103,7 +99,6 @@ def view_product(request, id, name):
     items = Item.objects.filter(ItemID=id)
     reviews = Reviews.objects.filter(ItemID=id)
     ratings = Reviews.getAvg(reviews, id)
-    print(ratings)
     return render(request, 'shop/productview.html', {'items': items})
 
 
