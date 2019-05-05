@@ -31,50 +31,46 @@ def beauty_category(request):
     items = Item.objects.filter(CategoryId=1)
     serialized_data = [item.ItemID for item in items]
     request.session['item_data'] = serialized_data
-    return render(request, 'shop/categoryview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 
 def clothing_category(request):
     items = Item.objects.filter(CategoryId=2)
     serialized_data = [item.ItemID for item in items]
     request.session['item_data'] = serialized_data
-    return render(request, 'shop/categoryview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 
 def jewelry_category(request):
     items = Item.objects.filter(CategoryId=3)
     serialized_data = [item.ItemID for item in items]
     request.session['item_data'] = serialized_data
-    return render(request, 'shop/categoryview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 
 def shoes_category(request):
     items = Item.objects.filter(CategoryId=4)
     serialized_data = [item.ItemID for item in items]
     request.session['item_data'] = serialized_data
-    return render(request, 'shop/categoryview.html', {'items': items})
+    return render(request, 'shop/itemview.html', {'items': items})
 
 
 def sort(request):
     if request.POST:
         sort_term = request.POST['sort_options']
-        print(sort_term)
 
         category = request.session['item_data']
-        print(len(category))
 
         items = set([])
 
         if sort_term == "low":
             for item_id in category:
-                print(item_id)
                 items = items.union(set(Item.objects.filter(Q(ItemID = item_id))))
             ordered = sorted(items, key=operator.attrgetter('Price'))
             return render(request, 'shop/itemview.html', {'items': ordered})
 
         if sort_term == "high":
             for item_id in category:
-                print(item_id)
                 items = items.union(set(Item.objects.filter(Q(ItemID = item_id))))
             ordered = sorted(items, reverse=True, key=operator.attrgetter('Price'))
             return render(request, 'shop/itemview.html', {'items': ordered})
@@ -96,14 +92,13 @@ def search(request):
             request.session['item_data'] = serialized_data
             return render(request, 'shop/itemview.html', {'items': items})
         else:
-            return render(request, 'shop/categoryview.html')
+            return render(request, 'shop/itemview.html')
 
 
 def view_product(request, id, name):
     items = Item.objects.filter(ItemID=id)
     reviews = Reviews.objects.filter(ItemID=id)
     ratings = Reviews.getAvg(reviews, id)
-    print(ratings)
     return render(request, 'shop/productview.html', {'items': items})
 
 
