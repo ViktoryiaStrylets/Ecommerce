@@ -232,6 +232,10 @@ html, body {
       <p>{{item.Description}}</p>
     </div>
 
+    <div class="product-rating">
+      <span>Rating: {{ratings.Ratings__avg}}</span>
+
+    </div>
     <!-- Product Configuration -->
     <div class="product-configuration">
 
@@ -270,7 +274,30 @@ html, body {
       </form>
 
     </div>
+    <p></p>
+    <h1>Add a Review</h1>
+    <div>
+    <form action="{% url 'shop:add_review' item.ItemID item.slug_name %}" method="post">
+      {% csrf_token %}
+      <!--
+      <select name="sort_options">
+          <option selected="selected" disabled>Rating</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <p></p>
+      <input class="form-control mr-sm-2" type="text" name="review_box" placeholder="Review" aria-label="Review">
+      <p></p>
+    -->
+      {{form.as_p}}
+      <input type="submit" value="Submit">
+    </form>
+    </div>
   </div>
+
 <!--  {% endfor %}-->
 
 </main>

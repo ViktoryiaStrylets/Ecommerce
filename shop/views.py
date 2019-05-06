@@ -1,13 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.db.models import Q
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.sessions.models import Session
+from django.contrib.auth.models import User
 
-import operator
+import operator, datetime
 from .models import Item
 from .models import Reviews
 from .models import Category
 from .models import Supplier
 from .forms import SearchForm
+from .forms import ReviewForm
 from shoppingcart.models import ShoppingCart
 
 def sellers(request):
@@ -99,6 +104,35 @@ def view_product(request, id, name):
     items = Item.objects.filter(ItemID=id)
     reviews = Reviews.objects.filter(ItemID=id)
     ratings = Reviews.getAvg(reviews, id)
-    return render(request, 'shop/productview.html', {'items': items})
+    form = ReviewForm()
+    return render(request, 'shop/productview.html', {'items': items, 'ratings':ratings, 'form':form})
 
-
+def add_review(request, id, name):
+    items = Item.objects.filter(ItemID=id)
+    reviews = Reviews.objects.filter(ItemID=id)
+    ratings = Reviews.getAvg(reviews, id)
+    if request.POST:
+        item = get_object_or_404(Item, ItemID=id)
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            top = Reviews.objects.order_by('-ReviewID')[0]
+            CustomerID = form.cleaned_data['CustomerID']
+            Ratings = form.cleaned_data['Ratings']
+            Review = form.cleaned_data['Review']
+            reviewToAdd = Reviews()
+            reviewToAdd.ReviewID=top.ReviewID + 1
+            reviewToAdd.ItemID=id
+            reviewToAdd.SellerID=item.SellerID
+            reviewToAdd.Ratings=Ratings
+            reviewToAdd.Review=Review
+            reviewToAdd.Date=datetime.datetime.now()
+            reviewToAdd.CustomerID=CustomerID
+            reviewToAdd.save()
+            print("success")
+            return HttpResponseRedirect(reverse('shop:product-view', args=(id, name)))
+        else:
+            print("failure")
+            return render(request, 'shop/productview.html', {'items': items, 'ratings':ratings})
+    else:
+        print("double failure")
+        return render(request, 'shop/productview.html', {'items': items, 'ratings':ratings})

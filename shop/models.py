@@ -25,11 +25,19 @@ class Item(models.Model):
         return slugify(self.ProductName)
 
 class Reviews(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+
     ReviewID = models.IntegerField(primary_key=True)
     CustomerID = models.IntegerField()
     ItemID = models.IntegerField()
     SellerID = models.IntegerField()
-    Ratings = models.IntegerField()
+    Ratings = models.IntegerField(choices = RATING_CHOICES)
     Review = models.CharField(max_length=255)
     Date = models.DateField(auto_now=True)
 
