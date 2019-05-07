@@ -74,11 +74,13 @@ def sort(request):
             ordered = sorted(items, key=operator.attrgetter('Price'))
             return render(request, 'shop/itemview.html', {'items': ordered})
 
-        if sort_term == "high":
+        elif sort_term == "high":
             for item_id in category:
                 items = items.union(set(Item.objects.filter(Q(ItemID = item_id))))
             ordered = sorted(items, reverse=True, key=operator.attrgetter('Price'))
             return render(request, 'shop/itemview.html', {'items': ordered})
+        elif sort_term == "popular":
+            return render(request, 'shop/itemview.html', {'items': items})
 
 def search(request):
     if request.POST:
