@@ -275,7 +275,7 @@ html, body {
 
     </div>
     <p></p>
-    <h1>Add a Review</h1>
+    <h5>Add a Review</h5>
     <div>
     <form action="{% url 'shop:add_review' item.ItemID item.slug_name %}" method="post">
       {% csrf_token %}

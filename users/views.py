@@ -34,10 +34,15 @@ def login_page(request):
         if user is not None:
             login(request, user)
             print(request.user.is_authenticated)
-            messages.success(request, f' {username} Successfully LOG IN !')
+            messages.success(request, f' {username} Successfully LOGGED IN !')
             return redirect('blog-home')
         else:
                 messages.error(request, " Invalid Password or UserName")
                 return redirect('/users/login_page')
 
     return render(request, 'users/login.html', context)
+
+
+def logout_page(request):
+    messages.success(request,"Successfully LOGGED OUT! HOPE TO SEE YOU SOON!")
+    return redirect('blog-home')

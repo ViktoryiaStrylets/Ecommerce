@@ -34,7 +34,7 @@ class CartManager(models.Manager):
 class ShoppingCart(models.Model):
     customerid = models.IntegerField(db_column='CustomerID', blank=True, null=True)
     item = models.ManyToManyField(Item, db_column='Item', blank=True)
-    total = models.DecimalField(default=0.00, max_digits=5, decimal_places=2, db_column='Total', blank=True, null=True)
+    total = models.DecimalField(default=0.00, max_digits=4, decimal_places=2, db_column='Total', blank=True, null=True)
     subtotal = models.IntegerField(db_column='subtotal', blank=True, null=True)
     quantity = models.IntegerField(db_column='Quantity', blank=True, null=True)
     auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='auth_user', blank=True, null=True)
