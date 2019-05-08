@@ -16,7 +16,7 @@ class SearchForm(forms.Form):
 class ReviewForm(forms.ModelForm):
 	class Meta:
 		model = Reviews
-		fields = ['CustomerID', 'Ratings', 'Review',]
+		fields = ['Ratings', 'Review',]
 		widgets = {
 			'Review': Textarea(attrs={'cols':40, 'rows':15})
 		}

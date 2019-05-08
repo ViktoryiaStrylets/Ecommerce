@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.conf import settings
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 import operator, datetime
 from .models import Item
@@ -14,6 +16,8 @@ from .models import Supplier
 from .forms import SearchForm
 from .forms import ReviewForm
 from shoppingcart.models import ShoppingCart
+
+AuthUser = settings.AUTH_USER_MODEL
 
 def sellers(request):
     sellers = Supplier.objects.all()
@@ -118,7 +122,6 @@ def add_review(request, id, name):
         form = ReviewForm(request.POST)
         if form.is_valid():
             top = Reviews.objects.order_by('-ReviewID')[0]
-            CustomerID = form.cleaned_data['CustomerID']
             Ratings = form.cleaned_data['Ratings']
             Review = form.cleaned_data['Review']
             reviewToAdd = Reviews()
@@ -128,7 +131,11 @@ def add_review(request, id, name):
             reviewToAdd.Ratings=Ratings
             reviewToAdd.Review=Review
             reviewToAdd.Date=datetime.datetime.now()
-            reviewToAdd.CustomerID=CustomerID
+            if request.user.is_authenticated:
+                reviewToAdd.auth_user=request.user
+            else:
+                messages.error(request, "Login required")
+                return redirect('/users/login_page')
             reviewToAdd.save()
             print("success")
             return HttpResponseRedirect(reverse('shop:product-view', args=(id, name)))
