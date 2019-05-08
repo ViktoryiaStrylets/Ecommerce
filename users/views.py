@@ -25,19 +25,18 @@ def login_page(request):
     context = {
         "form": form
     }
-    if request.user.is_authenticated:
 
-        if form.is_valid():
-            print(form.cleaned_data)
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                context['form'] = LoginForm()
-                messages.success(request, f' {username} Successfully LOG IN !')
-                return redirect('blog-home')
-            else:
+    if form.is_valid():
+        print(form.cleaned_data)
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            print(request.user.is_authenticated)
+            messages.success(request, f' {username} Successfully LOG IN !')
+            return redirect('blog-home')
+        else:
                 messages.error(request, " Invalid Password or UserName")
                 return redirect('/users/login_page')
 
