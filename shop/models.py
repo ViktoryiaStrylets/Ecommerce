@@ -1,7 +1,9 @@
 from django.db import models
+from django.conf import settings
 from django.db.models import Avg
 from django.utils.text import slugify
 
+AuthUser = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class Item(models.Model):
@@ -34,7 +36,8 @@ class Reviews(models.Model):
     )
 
     ReviewID = models.IntegerField(primary_key=True)
-    CustomerID = models.IntegerField()
+    CustomerID = models.IntegerField(db_column='CustomerID', blank=True, null=True)
+    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='auth_user', blank=True, null=True)
     ItemID = models.IntegerField()
     SellerID = models.IntegerField()
     Ratings = models.IntegerField(choices = RATING_CHOICES)
