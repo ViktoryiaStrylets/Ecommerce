@@ -16,6 +16,7 @@ class CartManager(models.Manager):
             cart_obj = qs.first()
             if request.user.is_authenticated and cart_obj.auth_user is None:
                 cart_obj.auth_user = request.user
+                cart_obj.costomerid = request.user
                 cart_obj.save()
         else:
             cart_obj = ShoppingCart.objects.new(auth_user=request.user)
@@ -28,6 +29,7 @@ class CartManager(models.Manager):
         if auth_user is not None:
             if auth_user.is_authenticated:
                 auth_user_obj = auth_user
+                self.costomerid = auth_user
         return self.model.objects.create(auth_user=auth_user_obj)
 
 

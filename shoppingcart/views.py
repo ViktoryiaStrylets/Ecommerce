@@ -41,3 +41,13 @@ def cart_remove(request):
     if item in cart_obj.item.all():
        cart_obj.item.remove(item)
     return redirect("cart")
+
+def cart_remove_all(request):
+    cart_obj, new_obj = ShoppingCart.objects.new_or_get(request)
+    items = cart_obj.item.all()
+
+    for item in items:
+        if item in cart_obj.item.all():
+            cart_obj.item.remove(item)
+
+    return redirect("cart")
